@@ -8,7 +8,7 @@ try:
     from hello_world import (
         hello,
     )
-
+          
 except ImportError as import_fail:
     message = import_fail.args[0].split("(", maxsplit=1)
     item_name = import_fail.args[0].split()[3]
@@ -28,3 +28,5 @@ class HelloWorldTest(unittest.TestCase):
     def test_say_hi(self):
         msg = "\n\nThis test expects a return of the string 'Hello, World!' \nDid you use print('Hello, World!') by mistake?"
         self.assertEqual(hello(), "Hello, World!", msg=msg)
+if __name__ == "__main__":
+        unittest.main(verbosity=2)  
