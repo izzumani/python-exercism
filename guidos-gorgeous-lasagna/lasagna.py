@@ -6,7 +6,7 @@ https://en.wikipedia.org/wiki/Guido_van_Rossum
 This is a module docstring, used to describe the functionality
 of a module and its functions and/or classes.
 """
-
+PREPARATION_TIME = 2
 EXPECTED_BAKE_TIME = 40
 
 def bake_time_remaining(elapsed_bake_time):
@@ -28,7 +28,6 @@ def preparation_time_in_minutes(number_of_layers):
     :param number_of_layers: int -  takes the number of layers you want to add to the lasagna.
     :return: int - rminutes you would spend making them.
     """
-    PREPARATION_TIME = 2
     return number_of_layers * PREPARATION_TIME
 
 # Remember to add a docstring (you can copy and then alter the one from bake_time_remaining.)
