@@ -116,4 +116,8 @@ class SetsTest(unittest.TestCase):
 
                 error_message = ("Expected only ingredients that belong to exactly "
                                 "one dish, but got multi-dish ingredients instead.")
+                
                 self.assertEqual(singleton_ingredients(item[0], item[1]), (result), msg=error_message)
+
+if __name__ =='__main__':
+    unittest.main(verbosity=2)

@@ -4,11 +4,8 @@ from sets_categories_data import (VEGAN,
                                   VEGETARIAN,
                                   KETO,
                                   PALEO,
-                                  OMNIVORE,
                                   ALCOHOLS,
-                                  SPECIAL_INGREDIENTS,
-                                  example_dishes,
-                                EXAMPLE_INTERSECTION
+                                  SPECIAL_INGREDIENTS
                                   )
 
 
@@ -59,11 +56,11 @@ def categorize_dish(dish_name, dish_ingredients):
 
     if dish_ingredients.issubset(VEGAN):
         return dish_name + ': VEGAN'
-    elif dish_ingredients.issubset(VEGETARIAN):
+    if dish_ingredients.issubset(VEGETARIAN):
         return dish_name + ': VEGETARIAN'
-    elif dish_ingredients.issubset(PALEO):
+    if dish_ingredients.issubset(PALEO):
         return dish_name + ': PALEO'
-    elif dish_ingredients.issubset(KETO):
+    if dish_ingredients.issubset(KETO):
         return dish_name + ': KETO'
     return dish_name + ': OMNIVORE'
 
@@ -91,10 +88,12 @@ def compile_ingredients(dishes):
     """
 
     ingredients = set()
-    ingredients = dishes[0]
-    for ingr in dishes[1:]:
+    # ingredients = dishes[0]
+    for ingr in dishes:
         
-        ingredients.union(ingr)
+        # print(f"ingredients: {ingredients} And ingr: {ingr} --> {ingredients | ingr}")
+        ingredients = ingredients.union(ingr)
+        
     return ingredients
 
 def separate_appetizers(dishes, appetizers):
@@ -108,7 +107,7 @@ def separate_appetizers(dishes, appetizers):
     Either list could contain duplicates and may require de-duping.
     """
 
-    return dishes.difference(appetizers)
+    return list(set(dishes).difference(appetizers))
 
 
 def singleton_ingredients(dishes, intersection):
@@ -126,12 +125,5 @@ def singleton_ingredients(dishes, intersection):
     The function should return a `set` of ingredients that only appear in a single dish.
     """
 
-    pass
-
-dishes = [ {'tofu', 'soy sauce', 'ginger', 'corn starch', 'garlic', 'brown sugar', 'sesame seeds', 'lemon juice'},
-           {'pork tenderloin', 'arugula', 'pears', 'blue cheese', 'pine nuts',
-           'balsamic vinegar', 'onions', 'black pepper'},
-           {'honeydew', 'coconut water', 'mint leaves', 'lime juice', 'salt', 'english cucumber'}]
-
-
-print(compile_ingredients(dishes))
+    singletons = (dish - intersection for dish in dishes)
+    return set.union(*singletons)
